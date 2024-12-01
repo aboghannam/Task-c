@@ -16,6 +16,7 @@ namespace Domain.Entities
         public UserData Admin { get; set; }
         public UserData Patient { get; set; }
         public AppointmentStatus Status { get; set; }
+        public string Reason { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedTime { get; set; }
         public bool IsDeleted { get; set; }

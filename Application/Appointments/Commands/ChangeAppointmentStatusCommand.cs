@@ -15,6 +15,7 @@ namespace Application.Appointments.Commands
     {
         public Guid Id { get; set; }
         public AppointmentStatus Status { get; set; } = AppointmentStatus.Finished;
+        public string Reason { get; set; } = null;
 
         public class ChangeAppointmentStatusValidator : AbstractValidator<ChangeAppointmentStatusCommand>
         {
