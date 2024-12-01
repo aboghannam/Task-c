@@ -8,6 +8,7 @@ namespace Domain.Common
 {
     public interface IDeleteBase
     {
+        public bool IsDeleted { get; set; }
         public Guid? DeletedBy { get; set; }
         public DateTime? DeletedTime { get; set; }
     }

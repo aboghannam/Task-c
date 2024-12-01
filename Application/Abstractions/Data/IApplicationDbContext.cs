@@ -12,7 +12,7 @@ namespace Application.Abstractions.Data
     {
         DbSet<UserData> UserDatas { set; get; }
         DbSet<Appointment> Appointments { set; get; }
-        DbSet<Setting> Settings { set; get; }
+        DbSet<Domain.Entities.Setting> Settings { set; get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 

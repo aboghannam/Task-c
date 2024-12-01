@@ -10,6 +10,7 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Application.Abstractions.Data;
 using Common;
+using Application.ClientData.Dtos;
 
 
 namespace Application.ClientData.Queries
@@ -28,7 +29,7 @@ namespace Application.ClientData.Queries
 
             public async Task<Result> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
             {
-                var usersData = await _context.UserDatas.ToListAsync();
+                var usersData = await _context.UserDatas.ProjectToType<UserDataDto>().ToListAsync();
                 return new Result(true, usersData, "done");
             }
         }

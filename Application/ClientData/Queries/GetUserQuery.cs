@@ -11,19 +11,20 @@ using Microsoft.EntityFrameworkCore;
 using Application.ClientData.Commands;
 using Application.Abstractions.Data;
 using Common;
+using Application.ClientData.Dtos;
 
 
 namespace Application.ClientData.Queries
 {
     public class GetUserQuery : IRequest<Result>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public class GetUserValidator : AbstractValidator<GetUserQuery>
         {
             public GetUserValidator()
             {
-                RuleFor(r => r.Id).NotEmpty().NotNull().NotEqual(0)
+                RuleFor(r => r.Id).NotEmpty().NotNull()
                     .WithMessage("Id is Required");
             }
         }
@@ -54,7 +55,7 @@ namespace Application.ClientData.Queries
                 var userData = await _context.UserDatas.FindAsync(request.Id);
                 if (userData == null)
                     return new Result(false, message: "not found");
-                return new Result(true, userData, "done");
+                return new Result(true, userData.Adapt<UserDataDto>(), "done");
             }
         }
 

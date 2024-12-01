@@ -32,7 +32,7 @@ namespace Api.Controllers
             return new JsonResult(await _mediator.Send(request));
         }
         [HttpGet("Find")]
-        public async Task<ActionResult> Find([FromQuery] int Id)
+        public async Task<ActionResult> Find([FromQuery] Guid Id)
         {
             return new JsonResult(await _mediator.Send(new GetUserQuery() { Id = Id }));
         }

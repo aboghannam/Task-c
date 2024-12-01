@@ -3,6 +3,7 @@ using Domain.Common;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace Infrastructure.Database;
 
@@ -12,12 +13,14 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
 
     public DbSet<UserData> UserDatas { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
-    public DbSet<Setting> Settings { get; set; }
+    public DbSet<Domain.Entities.Setting> Settings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        modelBuilder.Entity<UserData>().HasQueryFilter(p => !p.IsDeleted);
+        modelBuilder.Entity<Appointment>().HasQueryFilter(p => !p.IsDeleted);
 
     }
 

@@ -9,13 +9,15 @@ using System.Threading.Tasks;
 using Mapster;
 using Application.Abstractions.Data;
 using Common;
+using Microsoft.EntityFrameworkCore.Storage;
+using Common.Interfaces;
 
 
 namespace Application.ClientData.Commands
 {
     public class DeleteUserDataCommand : IRequest<Result>
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public class DeleteUserDataValidator : AbstractValidator<DeleteUserDataCommand>
         {
             public DeleteUserDataValidator()
@@ -26,22 +28,18 @@ namespace Application.ClientData.Commands
             }
         }
 
-        public class Handler : IRequestHandler<DeleteUserDataCommand, Result>
+        public class Handler(IApplicationDbContext _context, IDateTimeProvider _dateTimeProvider) : IRequestHandler<DeleteUserDataCommand, Result>
         {
-
-            private readonly IApplicationDbContext _context;
-
-            public Handler(IApplicationDbContext context)
-            {
-                _context = context;
-            }
 
             public async Task<Result> Handle(DeleteUserDataCommand request, CancellationToken cancellationToken)
             {
                 var userData = await _context.UserDatas.FindAsync(request.Id);
                 if (userData == null)
                     return new Result(false, message: "check your id");
-                _context.UserDatas.Remove(userData);
+
+                userData.IsDeleted = true;
+                userData.DeletedTime = _dateTimeProvider.UtcNow;
+                _context.UserDatas.Update(userData);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Result(true, userData, "done");

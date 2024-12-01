@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Mapster;
 using Application.Abstractions.Data;
 using Common;
+using Common.Enums;
+using Application.ClientData.Dtos;
 
 
 namespace Application.ClientData.Commands
@@ -18,10 +20,12 @@ namespace Application.ClientData.Commands
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public string PhoneNumber { get; set; }
         public string NationalId { get; set; }
+        public UserType Type { get; set; }
 
         public class CreateUserDataValidator : AbstractValidator<CreateUserDataCommand>
         {
@@ -55,7 +59,7 @@ namespace Application.ClientData.Commands
                 await _context.UserDatas.AddAsync(userData);
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Result(true, userData, "done");
+                return new Result(true, userData.Adapt<UserDataDto>(), "done");
             }
         }
 
