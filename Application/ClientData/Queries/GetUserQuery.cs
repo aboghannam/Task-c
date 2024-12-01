@@ -10,8 +10,8 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Application.ClientData.Commands;
 using Application.Abstractions.Data;
-using Common;
 using Application.ClientData.Dtos;
+using Common.Infrastructures;
 
 
 namespace Application.ClientData.Queries

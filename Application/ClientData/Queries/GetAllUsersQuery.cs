@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Application.Abstractions.Data;
-using Common;
 using Application.ClientData.Dtos;
+using Common.Infrastructures;
 
 
 namespace Application.ClientData.Queries

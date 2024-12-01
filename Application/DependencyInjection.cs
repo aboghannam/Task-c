@@ -1,5 +1,7 @@
 ﻿using Application.Abstractions.Behaviors;
 using Application.ClientData.Commands;
+using Application.Interfaces;
+using Application.Services;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,8 @@ public static class DependencyInjection
         });
 
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
+
+        services.AddScoped<IAppointmentServices, AppointmentServices>();
 
         return services;
 

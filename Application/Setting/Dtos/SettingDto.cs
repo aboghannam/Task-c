@@ -13,7 +13,7 @@ namespace Application.Setting.Dtos
         {
             config.NewConfig<Domain.Entities.Setting, SettingDto>()
                 .Ignore(dest => dest.WorkDays)
-                   ;
+                   ; 
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Common.Enums;
+﻿using Application.Appointments.Dtos;
+using Common.Enums;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ namespace Application.ClientData.Dtos
 
         public UserType Type { get; set; }
 
-        public ICollection<Appointment> AdminAppointments { get; set; } = new HashSet<Appointment>();
-        public ICollection<Appointment> PatientAppointments { get; set; } = new HashSet<Appointment>();
+        public ICollection<AppointmentDto> AdminAppointments { get; set; } = new HashSet<AppointmentDto>();
+        public ICollection<AppointmentDto> PatientAppointments { get; set; } = new HashSet<AppointmentDto>();
 
     }
 }

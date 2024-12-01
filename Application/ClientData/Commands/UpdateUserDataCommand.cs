@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mapster;
 using Application.Abstractions.Data;
-using Common;
+using Common.Infrastructures;
 
 
 namespace Application.ClientData.Commands

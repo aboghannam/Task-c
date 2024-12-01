@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Mapster;
 using Application.Abstractions.Data;
-using Common;
 using Microsoft.EntityFrameworkCore.Storage;
 using Common.Interfaces;
+using Common.Infrastructures;
 
 
 namespace Application.ClientData.Commands

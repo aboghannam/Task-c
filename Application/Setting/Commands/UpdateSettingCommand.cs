@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Mapster;
 using Application.Abstractions.Data;
-using Common;
 using Microsoft.EntityFrameworkCore;
 using Application.Setting.Dtos;
 using Microsoft.AspNetCore.Http;
+using Common.Infrastructures;
 
 
 namespace Application.ClientData.Commands
