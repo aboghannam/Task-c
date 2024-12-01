@@ -44,14 +44,6 @@ namespace Application.ClientData.Queries
 
             public async Task<Result> Handle(GetUserQuery request, CancellationToken cancellationToken)
             {
-                var validationResult = await _validator.ValidateAsync(request, cancellationToken);
-
-                if (!validationResult.IsValid)
-                {
-                    // Handle validation errors (throw exception, return specific error response, etc.)
-                    throw new ValidationException(validationResult.Errors);
-                }
-
                 var userData = await _context.UserDatas.FindAsync(request.Id);
                 if (userData == null)
                     return new Result(false, message: "not found");

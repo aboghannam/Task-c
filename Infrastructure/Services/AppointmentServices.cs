@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions.Data;
-using Infrastructure.Interfaces;
+using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Services
+namespace Application.Services
 {
     public class AppointmentServices(IApplicationDbContext _applicationDbContext) : IAppointmentServices
     {
@@ -18,7 +18,7 @@ namespace Infrastructure.Services
             if (!workingDays.Contains((int)dateTime.DayOfWeek))
                 return false;
 
-            if (dateTime.TimeOfDay < setting.WorkFrom.TimeOfDay || dateTime.TimeOfDay > setting.WorkFrom.TimeOfDay)
+            if (dateTime.TimeOfDay < setting.WorkFrom.TimeOfDay || dateTime.TimeOfDay > setting.WorkTo.TimeOfDay)
                 return false;
 
             return true;
