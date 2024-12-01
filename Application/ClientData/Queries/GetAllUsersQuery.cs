@@ -28,7 +28,7 @@ namespace Application.ClientData.Queries
 
             public async Task<Result> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
             {
-                var usersData = await _context.userDatas.ToListAsync();
+                var usersData = await _context.UserDatas.ToListAsync();
                 return new Result(true, usersData, "done");
             }
         }

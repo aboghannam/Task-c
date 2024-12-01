@@ -55,7 +55,7 @@ namespace Application.ClientData.Commands
             public async Task<Result> Handle(UpdateUserDataCommand request, CancellationToken cancellationToken)
             {
                 var userData = request.Adapt<UserData>();
-                _context.userDatas.Update(userData);
+                _context.UserDatas.Update(userData);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Result(true, userData, "done");

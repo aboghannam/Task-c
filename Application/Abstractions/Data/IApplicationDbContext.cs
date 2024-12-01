@@ -10,7 +10,9 @@ namespace Application.Abstractions.Data
 {
     public interface IApplicationDbContext
     {
-        DbSet<UserData> userDatas { set; get; }
+        DbSet<UserData> UserDatas { set; get; }
+        DbSet<Appointment> Appointments { set; get; }
+        DbSet<Setting> Settings { set; get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 

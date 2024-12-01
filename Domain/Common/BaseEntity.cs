@@ -10,8 +10,8 @@ namespace Domain.Common
     {
         public Guid Id { get; set; }
         public DateTime? CreatedTime { get; set; }
-        public string CreatedBy { get; set; }
+        public Guid? CreatedBy { get; set; }
         public DateTime? UpdatedTime { get; set; }
-        public string UpdateBy { get; set; }
+        public Guid? UpdateBy { get; set; }
     }
 }

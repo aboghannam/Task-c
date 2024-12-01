@@ -51,7 +51,7 @@ namespace Application.ClientData.Queries
                     throw new ValidationException(validationResult.Errors);
                 }
 
-                var userData = await _context.userDatas.FindAsync(request.Id);
+                var userData = await _context.UserDatas.FindAsync(request.Id);
                 if (userData == null)
                     return new Result(false, message: "not found");
                 return new Result(true, userData, "done");

@@ -52,7 +52,7 @@ namespace Application.ClientData.Commands
             public async Task<Result> Handle(CreateUserDataCommand request, CancellationToken cancellationToken)
             {
                 var userData = request.Adapt<UserData>();
-                await _context.userDatas.AddAsync(userData);
+                await _context.UserDatas.AddAsync(userData);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Result(true, userData, "done");

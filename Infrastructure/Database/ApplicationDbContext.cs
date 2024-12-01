@@ -10,7 +10,9 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     : DbContext(options), IApplicationDbContext
 {
 
-    public DbSet<UserData> userDatas { get; set; }
+    public DbSet<UserData> UserDatas { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<Setting> Settings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

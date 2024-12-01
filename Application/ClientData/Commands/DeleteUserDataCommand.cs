@@ -38,10 +38,10 @@ namespace Application.ClientData.Commands
 
             public async Task<Result> Handle(DeleteUserDataCommand request, CancellationToken cancellationToken)
             {
-                var userData = await _context.userDatas.FindAsync(request.Id);
+                var userData = await _context.UserDatas.FindAsync(request.Id);
                 if (userData == null)
                     return new Result(false, message: "check your id");
-                _context.userDatas.Remove(userData);
+                _context.UserDatas.Remove(userData);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Result(true, userData, "done");

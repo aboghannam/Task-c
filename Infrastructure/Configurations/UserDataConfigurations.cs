@@ -13,5 +13,17 @@ internal sealed class TodoItemConfiguration : IEntityTypeConfiguration<UserData>
     public void Configure(EntityTypeBuilder<UserData> builder)
     {
         builder.HasKey(t => t.Id);
+
+        builder.HasMany(e => e.AdminAppointments)
+            .WithOne(e => e.Admin)
+            .HasForeignKey(e => e.AdminId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+
+        builder.HasMany(e => e.PatientAppointments)
+            .WithOne(e => e.Patient)
+            .HasForeignKey(e => e.PatientId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .IsRequired(false);
     }
 }
