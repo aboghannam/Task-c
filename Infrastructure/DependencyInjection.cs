@@ -1,8 +1,8 @@
 ﻿using Application.Abstractions.Data;
+using Application.Interfaces;
+using Application.Services;
 using Common.Interfaces;
 using Infrastructure.Database;
-using Infrastructure.Interfaces;
-using Infrastructure.Services;
 using Infrastructure.Time;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +22,7 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+        services.AddScoped<IAppointmentServices, AppointmentServices>();
         return services;
     }
 

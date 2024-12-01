@@ -17,13 +17,14 @@ using Common.Enums;
 
 namespace Application.Appointments.Queries
 {
-    public class GetAllAppointmentsQuery: IRequest<Result>
+    public class GetAllAppointmentsQuery : IRequest<Result>
     {
         public Guid? AdminId { get; set; } = null;
         public Guid? PatientId { get; set; } = null;
         public DateTime? DateFrom { get; set; } = null;
         public DateTime? DateTo { get; set; } = null;
         public AppointmentStatus? Status { get; set; } = null;
+        public string PatientName { get; set; } = null;
         public class Handler : IRequestHandler<GetAllAppointmentsQuery, Result>
         {
 
@@ -51,6 +52,9 @@ namespace Application.Appointments.Queries
 
                 if (request.Status.HasValue)
                     query = query.Where(x => x.Status == request.Status);
+
+                if (!string.IsNullOrEmpty(request.PatientName))
+                    query = query.Where(x => x.Patient.Username.Contains(request.PatientName));
 
                 var usersData = await query.ProjectToType<AppointmentDto>().ToListAsync();
                 return new Result(true, usersData, "done");
